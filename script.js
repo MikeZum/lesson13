@@ -51,6 +51,7 @@ if (fullPrice > 30000) {
   console.log("Что то пошло не так");
 }
 
+// With switch
 // switch (true) {
 //   case fullPrice > 30000:
 //     console.log("Даем скидку в 10%");
