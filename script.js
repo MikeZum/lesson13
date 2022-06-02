@@ -1,68 +1,94 @@
 "use strict";
 
-let title = prompt("Как называется ваш проект?");
-console.log(typeof title);
+let title;
+let screens;
+let screenPrice;
+let adaptive;
+let service1;
+let service2;
 
-let screens = prompt(
-  "Какие типы экранов нужно разработать?",
-  "Простые, Сложные, Интерактивные"
-);
-console.log(screens);
+let rollback;
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
 
-let screenPrice = +prompt("Сколько будет стоить данная работа?", "12000");
-console.log(screenPrice);
+const isNumber = function (num) {
+  return !isNaN(parseFloat(num)) && isFinite(num);
+};
 
-let adaptive = confirm("Нужен ли адаптив на сайте?");
-console.log(typeof adaptive);
+const asking = function () {
+  title = prompt("Как называется ваш проект?", "spaceX");
+  screens = prompt(
+    "Какие типы экранов нужно разработать?",
+    "Простые, Сложные, Интерактивные"
+  );
+  do {
+    screenPrice = prompt("Сколько будет стоить данная работа?", "12000");
+  } while (!isNumber(screenPrice));
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+};
 
-let service1 = prompt("Какой дополнительный тип услуги нужен?");
-console.log(service1);
+let showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+};
 
-let servicePrice1 = +prompt("Сколько это будет стоить?", "1000");
-console.log(servicePrice1);
+const getRollbackMessage = function (price) {
+  if (price > 30000) {
+    return "Даем скидку в 10%";
+  } else if (15000 < price && price <= 30000) {
+    return "Даем скидку в 5%";
+  } else if (0 <= price && price <= 15000) {
+    return "Скидка не предусмотрена";
+  } else {
+    return "Что-то пошло не так";
+  }
+};
 
-let service2 = prompt("Какой дополнительный тип услуги нужен?");
-console.log(service2);
+const getAllServicePrices = function () {
+  let sum = 0;
+  let num1, num2;
+  for (let i = 0; i < 2; i++) {
+    if (i === 0) {
+      service1 = prompt("Какой дополнительный тип услуги нужен?");
+      do {
+        num1 = prompt("Сколько это будет стоить?");
+      } while (!isNumber(num1));
+    } else if (i === 1) {
+      service2 = prompt("Какой дополнительный тип услуги нужен?");
+      do {
+        num2 = prompt("Сколько это будет стоить?");
+      } while (!isNumber(num2));
+    }
+  }
+  sum = +num1.trim() + +num2.trim();
+  return sum;
+};
 
-let servicePrice2 = +prompt("Сколько это будет стоить?", "1000");
-console.log(servicePrice2);
-
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-console.log(fullPrice);
-
-let rollback = fullPrice * (20 / 100);
-console.log(rollback);
-
-let servicePercentPrice = Math.ceil(fullPrice - rollback);
-console.log(servicePercentPrice);
-
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-console.log(screens.length);
-
-if (fullPrice > 30000) {
-  console.log("Даем скидку в 10%");
-} else if (fullPrice > 15000 && fullPrice <= 30000) {
-  console.log("Даем скидку в 5%");
-} else if (fullPrice <= 15000 && fullPrice >= 0) {
-  console.log("Скидка не предусмотрена");
-} else {
-  console.log("Что-то пошло не так");
+function getFullPrice(screenPrice, allServicePrices) {
+  return screenPrice + allServicePrices;
 }
 
-// With switch
-// switch (true) {
-//   case fullPrice > 30000:
-//     console.log("Даем скидку в 10%");
-//     break;
-//   case 15000 < fullPrice && fullPrice <= 30000:
-//     console.log("Даем скидку в 5%");
-//     break;
-//   case fullPrice <= 15000 && fullPrice >= 0:
-//     console.log("Скидка не предусмотрена");
-//     break;
-//   default:
-//     console.log("Что-то пошло не так");
-//     break;
-// }
+function getTitle(str) {
+  let low = str.trim().toLowerCase();
+  let upp = low.charAt(0).toUpperCase() + low.slice(1);
+  return upp;
+}
+
+let getServicePercentPrices = function (fullPrice, rollback) {
+  return fullPrice - rollback;
+};
+
+asking();
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice(+screenPrice.trim(), allServicePrices);
+rollback = fullPrice * (20 / 100);
+title = getTitle(title);
+servicePercentPrice = Math.ceil(getServicePercentPrices(fullPrice, rollback));
+
+showTypeOf(title);
+showTypeOf(fullPrice);
+showTypeOf(adaptive);
+
+console.log(screens.toLowerCase().split(", "));
+console.log(getRollbackMessage(fullPrice));
+console.log(servicePercentPrice, "итоговая стоимость минус сумма отката");
