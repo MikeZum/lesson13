@@ -1,29 +1,29 @@
-var number = parseInt(Math.random() * 5);
-console.log(number);
-while (true) {
-  var userNumber = prompt("Введи число от 1 до 100. Для выхода тыкни Z");
-  if (userNumber == null || userNumber == "Z") {
-    break;
+let randomNum = parseInt(Math.random() * 100);
+console.log(randomNum);
+
+function guessNumber(userNum) {
+  userNum = prompt("Введите число");
+
+  if (isNaN(userNum)) {
+    alert("Можно вводить только числа");
+    guessNumber(userNum);
   }
-  userNumber = parseInt(userNumber);
 
-  if (userNumber > number) {
-    alert("ваше число слишком большое");
-  } else if (userNumber < number) {
-    alert("ваше число слишком маленькое");
-  } else if (userNumber == number) {
-    alert("Вот видишь! Я всегда в тебя верил! Молодец! Ты угадал!");
-    var endorreset = prompt(
-      "Если я тебе ещё не надоел, то ты можешь сыграть ещё раз. Для этого напиши ЕЩЁ. А можешь и не играть. Для этого напиши ВСЁ"
-    );
-    endorreset = endorreset.toLowerCase();
+  if (userNum === null) {
+    alert("Игра окончена");
+    return;
+  }
 
-    if (endorreset == "ещё" || endorreset == "еще") {
-      number = parseInt(Math.random() * 5);
-    } else {
-      break;
-    }
-  } else {
-    alert("Нетужки, давай пиши, а если хочешь выйти нажми z");
+  if (userNum == randomNum) {
+    alert("Верно, Вы угадали загаданное число!");
+    return;
+  } else if (userNum < randomNum) {
+    alert("Ваше число меньше");
+    guessNumber(userNum);
+  } else if (userNum > randomNum) {
+    alert("Ваше число больше");
+    guessNumber(userNum);
   }
 }
+
+guessNumber();
