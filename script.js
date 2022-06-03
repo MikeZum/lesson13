@@ -1,7 +1,7 @@
 let randomNum = parseInt(Math.random() * 100);
 console.log(randomNum);
 let userNum = prompt("Угадай число от 1 до 100");
-let attempts = 1;
+let attempts = 2;
 
 let guessfunc = () => {
   function Res() {
@@ -9,41 +9,33 @@ let guessfunc = () => {
       alert("До новых встреч!!!");
       return;
     }
-    if (attempts === 0) {
-      const result = confirm("Попытки закончились, хотите сыграть еще?");
-      if (result) {
-        // location.reload();
-        randomNum = parseInt(Math.random() * 100);
-      }
-    } else {
-      return;
-    }
+    attempts--;
 
-    //   window.onload;
-    //   location.reload();
+    // if (attempts === 0) {
     //   const result = confirm("Попытки закончились, хотите сыграть еще?");
     //   if (result) {
-    //     function myfunc_2() {
-    //       location.reload();
-    //       randomNum = parseInt(Math.random() * 100);
-    //     }
-    // guessfunc();
-    // guessNumber();
-    // window.onload;
-    // randomNum = parseInt(Math.random() * 100);
-    //   } else {
-    //     return;
+    //     // location.reload();
+    //     randomNum = parseInt(Math.random() * 100);
     //   }
+    // } else {
+    //   return;
+    // }
 
-    attempts--;
-    if (userNum == randomNum) {
-      result = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
-      if (result) {
-        //   location.reload();
-        randomNum = parseInt(Math.random() * 100);
-      } else {
-        return;
+    if (attempts === 0) {
+      let choose;
+
+      choose = confirm("Попытки закончились, хотите сыграть еще?");
+
+      if (choose) {
+        window.onload;
+        // location.reload();
+        // randomNum = parseInt(Math.random() * 100);
+        // attempts = 3;
       }
+    }
+
+    if (userNum == randomNum) {
+      alert("Поздравляю, Вы угадали!!!");
     } else if (isNaN(userNum)) {
       alert("Введи число!");
       userNum = prompt("Введите число");
@@ -58,6 +50,7 @@ let guessfunc = () => {
       guessNumber();
     }
   }
+
   return Res;
 };
 
