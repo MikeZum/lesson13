@@ -19,40 +19,20 @@ let guessfunc = () => {
       if (choose) {
         userNum = prompt("Угадай число от 1 до 100");
         attempts = 2;
-
-        // randomNum = parseInt(Math.random() * 100);
-        // attempts = 2;
       }
     }
-    // if (attempts == 0) {
-    //   alert("qqq");
-    // }
-    //   const result = confirm("Попытки закончились, хотите сыграть еще?");
-    // if (attempts === 0) {
-    //   const result = confirm("Попытки закончились, хотите сыграть еще?");
-    //   if (result) {
-    //     // location.reload();
-    //     randomNum = parseInt(Math.random() * 100);
-    //   }
-    // } else {
-    //   return;
-    // }
-
-    // if (attempts === 0) {
-    //   let choose;
-
-    //   choose = confirm("Попытки закончились, хотите сыграть еще?");
-
-    //   if (choose) {
-    //     window.onload;
-    //     // location.reload();
-    //     // randomNum = parseInt(Math.random() * 100);
-    //     // attempts = 3;
-    //   }
-    // }
 
     if (userNum == randomNum) {
-      alert("Поздравляю, Вы угадали!!!");
+      // let choose;
+
+      choose = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
+      if (choose) {
+        location.reload();
+        // randomNum = parseInt(Math.random() * 100);
+        // userNum = prompt("Угадай число от 1 до 100");
+        // attempts = 2;
+        // return;
+      }
     } else if (isNaN(userNum)) {
       alert("Введи число!");
       userNum = prompt("Введите число");
