@@ -8,19 +8,18 @@ let guessfunc = () => {
       alert("Игра окончена");
       return;
     }
-
     if (userNum == randomNum) {
-      alert("Верно, Вы угадали загаданное число!");
-    } else if (userNum < randomNum) {
-      alert("Ваше число меньше! Осталось попыток: ");
+      alert("Поздравляю, Вы угадали!!!");
+    } else if (isNaN(userNum)) {
+      alert("Введи число!");
       userNum = prompt("Введите число");
       guessNumber();
-    } else if (isNaN(userNum)) {
-      alert("Можно вводить только числа");
+    } else if (userNum < randomNum) {
+      alert("Загаданное число больше");
       userNum = prompt("Введите число");
       guessNumber();
     } else if (userNum > randomNum) {
-      alert("Ваше число больше! Осталось попыток: ");
+      alert("Загаданное число меньше");
       userNum = prompt("Введите число");
       guessNumber();
     }
@@ -29,5 +28,4 @@ let guessfunc = () => {
 };
 
 let guessNumber = guessfunc();
-
 guessNumber();
