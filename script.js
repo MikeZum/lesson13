@@ -1,55 +1,74 @@
-let randomNum = parseInt(Math.random() * 100);
-console.log(randomNum);
-let userNum = prompt("Угадай число от 1 до 100");
-let attempts = 2;
+"use strict";
 
-let guessfunc = () => {
-  function Res() {
-    if (userNum == null) {
-      alert("До новых встреч!!!");
-      return;
-    }
-    attempts--;
+const hiddenNumber = function (myNumber, min, max) {
+  let startGame;
+  let gameOver;
+  let attempts = 3;
 
-    if (attempts === 0) {
-      let choose;
+  startGame = confirm("Угадай число от 1 до 100?");
 
-      choose = confirm("Попытки закончились, хотите сыграть еще?");
+  if (startGame) {
+    takeNumber(myNumber, attempts);
+  } else {
+    gameOver = alert("Игра окончена");
+  }
+};
 
-      if (choose) {
-        userNum = prompt("Угадай число от 1 до 100");
-        attempts = 2;
-      }
-    }
+const takeNumber = function (unknowNum, attempts) {
+  let enterNumber;
 
-    if (userNum == randomNum) {
-      // let choose;
+  console.log(unknowNum);
 
-      choose = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
-      if (choose) {
-        location.reload();
-        // randomNum = parseInt(Math.random() * 100);
-        // userNum = prompt("Угадай число от 1 до 100");
-        // attempts = 2;
-        // return;
-      }
-    } else if (isNaN(userNum)) {
-      alert("Введи число!");
-      userNum = prompt("Введите число");
-      guessNumber();
-    } else if (userNum < randomNum) {
-      alert("Загаданное число больше, осталось попыток " + attempts);
-      userNum = prompt("Введите число");
-      guessNumber();
-    } else if (userNum > randomNum) {
-      alert("Загаданное число меньше, осталось попыток " + attempts);
-      userNum = prompt("Введите число");
-      guessNumber();
+  enterNumber = prompt("Введите число от 1 до 100");
+
+  if (enterNumber === null) {
+    return alert("Игра окончена");
+  }
+
+  while (enterNumber.trim() == "" || !isFinite(enterNumber)) {
+    alert("Введи число!");
+    enterNumber = prompt("Введите число от 1 до 100");
+  }
+
+  enterNumber = Number(enterNumber);
+
+  attempts--;
+
+  if (enterNumber < unknowNum) {
+    numLessAlert(attempts);
+  }
+
+  if (enterNumber > unknowNum) {
+    numMoreAlert(attempts);
+  }
+
+  if (enterNumber === unknowNum) {
+    return alert("Поздравляю, Вы угадали!!!");
+  }
+
+  if (attempts === 0) {
+    let choose;
+
+    choose = confirm("Попытки закончились, хотите сыграть еще?");
+
+    if (choose) {
+      attempts = 10;
     }
   }
 
-  return Res;
+  takeNumber(unknowNum, attempts);
 };
 
-let guessNumber = guessfunc();
-guessNumber();
+const numLessAlert = function (attempt) {
+  alert("Загаданное число меньше, осталось " + attempt + " попыток");
+};
+
+const numMoreAlert = function (attempt) {
+  alert("Загаданное число больше, осталось " + attempt + " попыток");
+};
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+hiddenNumber(getRandomInt(1, 100)) > 10;
