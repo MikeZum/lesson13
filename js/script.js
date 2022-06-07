@@ -1,24 +1,26 @@
-// const title = document.getElementsByTagName("h1");
+"use strict";
+
+const title = document.getElementsByTagName("h1");
+// const title2 = document.getElementsByTagName("h1")[0];
+// console.log(title2);
+const btn = document.getElementsByClassName("handler_btn");
+const btnPlus = document.querySelector(".screen-btn");
+const percent = document.querySelectorAll(".percent");
+const number = document.querySelectorAll(".number");
+const input = document.querySelector(
+  ".rollback > .main-controls__range > input"
+);
+const span = document.querySelector(".rollback > .main-controls__range > span");
+const totalInputs = document.getElementsByClassName("total-input");
+let screens = document.querySelectorAll(".screen");
+
 // console.log(title[0]);
-
-// const btn = document.getElementsByClassName("handler_btn");
-// console.log(btn[(0, 1)]);
-
-// const btnPlus = document.querySelector(".screen-btn");
+// console.log(btn[0]);
+// console.log(btn[1]);
 // console.log(btnPlus);
-
-// const percent = document.querySelectorAll(
-//   ".main-controls__item  other-items percent"
-// );
 // console.log(percent);
-
-// const number = document.querySelectorAll(
-//   ".main-controls__item other-items number"
-// );
 // console.log(number);
-
-// const inpuType = document.querySelector(".main-controls__item > div > input");
-// console.log(inpuType);
-
-// const span = document.querySelector(".rollback > span");
+// console.log(input);
 // console.log(span);
+// console.log(totalInputs);
+// console.log(screens);
