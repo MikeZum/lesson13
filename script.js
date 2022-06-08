@@ -9,13 +9,13 @@ console.log(deleteAdv);
 deleteAdv.remove();
 
 // Порядок книг
-// const bookOrder = document.querySelectorAll(".book");
-// console.log(bookOrder);
+const bookOrder = document.querySelectorAll(".book");
+console.log(bookOrder);
 
-// bookOrder[0].before(bookOrder[1]);
-// bookOrder[2].before(bookOrder[4]);
-// bookOrder[2].before(bookOrder[3]);
-// bookOrder[2].before(bookOrder[5]);
+bookOrder[0].before(bookOrder[1]);
+bookOrder[2].before(bookOrder[4]);
+bookOrder[2].before(bookOrder[3]);
+bookOrder[2].before(bookOrder[5]);
 
 // Порядок глав во второй книге
 const chapterOrder = document.querySelectorAll(".book > ul > li");
@@ -51,3 +51,9 @@ chapterOrder[25].append(addChapter);
 console.log(addChapter, "EEEE");
 
 // console.log(addChapter[25], "EEEE");
+
+// Исправляем заголовок
+const headline = document.querySelectorAll("a");
+headline[4].innerHTML = "<strong>Книга 3. this и Прототипы Объектов</strong>";
+
+console.log(headline[4], "headline");
