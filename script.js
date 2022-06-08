@@ -1,5 +1,8 @@
 "use strict";
 
+document.body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
+
+// Удаляем рекламу
 const deleteAdv = document.querySelector(".adv");
 console.log(deleteAdv);
 deleteAdv.remove();
@@ -7,6 +10,7 @@ deleteAdv.remove();
 // const backgroundImg = document.querySelectorAll("body");
 // backgroundImg.style.backgroundImage = url(./image/open_book.jpg);
 
+// Порядок книг
 // const books = document.querySelectorAll(".book");
 // console.log(books);
 
