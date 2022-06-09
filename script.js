@@ -1,10 +1,18 @@
 "use strict";
 
 const btn = document.getElementById("btn");
-console.log(btn);
+const text = document.getElementById("text");
+const eBtn = document.getElementById("e_btn");
+const range = document.getElementById("range");
+const circle = document.getElementById("circle");
 
-btn.onclick = function () {
-  alert("rrr");
-};
+btn.addEventListener("click", () => {
+  btn.style.backgroundColor = text.value;
+});
 
-const changeColor = function (event) {};
+eBtn.style.display = "none";
+
+range.addEventListener("input", () => {
+  circle.style.height = range.value + "%";
+  circle.style.width = range.value + "%";
+});
