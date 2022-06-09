@@ -1,26 +1,28 @@
 "use strict";
 
-// Изменяем background-image
-document.body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
-
-// Удаляем рекламу
+const bookOrder = document.querySelectorAll(".book");
+const headline = document.querySelectorAll("a");
 const deleteAdv = document.querySelector(".adv");
-console.log(deleteAdv);
-deleteAdv.remove();
+const chapterOrder = document.querySelectorAll(".book > ul > li");
+const addChapter = document.createElement("li");
 
 // Порядок книг
-const bookOrder = document.querySelectorAll(".book");
-console.log(bookOrder);
-
 bookOrder[0].before(bookOrder[1]);
 bookOrder[2].before(bookOrder[4]);
 bookOrder[2].before(bookOrder[3]);
 bookOrder[2].before(bookOrder[5]);
 
-// Порядок глав во второй книге
-const chapterOrder = document.querySelectorAll(".book > ul > li");
-console.log(chapterOrder);
+// Изменяем background-image
+document.body.classList.add("newBackground");
+// document.body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 
+// Исправляем заголовок
+headline[4].innerText = "Книга 3. this и Прототипы Объектов";
+
+// Удаляем рекламу
+deleteAdv.remove();
+
+// Порядок глав во второй книге
 chapterOrder[1].after(chapterOrder[6]);
 chapterOrder[1].after(chapterOrder[3]);
 chapterOrder[6].after(chapterOrder[8]);
@@ -38,22 +40,27 @@ chapterOrder[48].after(chapterOrder[52]);
 chapterOrder[52].after(chapterOrder[53]);
 
 // Добавляем главу восем в шестую книгу
-
-const addChapter = document.createElement("li");
-
-addChapter.innerHTML = '<strong>"Глава 8: За пределами ES6"</strong>';
+addChapter.innerText = "Глава 8: За пределами ES6";
 chapterOrder[25].append(addChapter);
 
-// addChapter.textContent = '"Глава 8: За пределами ES6"';
+console.log(bookOrder);
+console.log(headline[4], "headline");
+console.log(deleteAdv, "deleteAdv");
+console.log(chapterOrder);
+console.log(addChapter, "addChapter");
 
-// chapterOrder[25].append(addChapter);
-
-console.log(addChapter, "EEEE");
-
-// console.log(addChapter[25], "EEEE");
+// Черновик
+// document.body.style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 
 // Исправляем заголовок
-const headline = document.querySelectorAll("a");
-headline[4].innerHTML = "<strong>Книга 3. this и Прототипы Объектов</strong>";
+// const headline = document.querySelectorAll("a");
+// headline[4].innerHTML = "<strong>Книга 3. this и Прототипы Объектов</strong>";
 
-console.log(headline[4], "headline");
+// Добавляем главу восем в шестую книгу
+
+// const addChapter = document.createElement("li");
+
+// addChapter.innerHTML = '<strong>"Глава 8: За пределами ES6"</strong>';
+// chapterOrder[25].append(addChapter);
+// addChapter.textContent = '"Глава 8: За пределами ES6"';
+// addChapter.innerHTML = "Глава 8: За пределами ES6";

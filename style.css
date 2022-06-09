@@ -103,3 +103,12 @@ h2>a{
   animation: blink 1s linear infinite;
 }
 
+.newBackground {
+position: relative;
+background-image: url(./image/you-dont-know-js.jpg);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: 1;
+}
+
