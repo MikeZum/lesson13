@@ -1,14 +1,21 @@
 "use strict";
 
-const btn = document.getElementById("btn");
-const text = document.getElementById("text");
-const eBtn = document.getElementById("e_btn");
-const range = document.getElementById("range");
-const circle = document.getElementById("circle");
+const btn = document.querySelector("#btn");
+const text = document.querySelector("#text");
+const eBtn = document.querySelector("#e_btn");
+const range = document.querySelector("#range");
+const circle = document.querySelector("#circle");
+const inputText = document.querySelector("#text");
+let textColor;
 
-btn.addEventListener("click", () => {
-  btn.style.backgroundColor = text.value;
-});
+const getColor = function () {
+  textColor = inputText.value;
+};
+
+const changeColor = function () {
+  square.style.backgroundColor = textColor;
+  inputText.value = "";
+};
 
 eBtn.style.display = "none";
 
@@ -16,3 +23,6 @@ range.addEventListener("input", () => {
   circle.style.height = range.value + "%";
   circle.style.width = range.value + "%";
 });
+
+inputText.addEventListener("input", getColor);
+btn.addEventListener("click", changeColor);
