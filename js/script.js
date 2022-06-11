@@ -31,29 +31,35 @@ const appData = {
   servicePercentPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+
   init: function () {
     appData.addTitle();
 
     startBtn.addEventListener("click", appData.start);
     buttonPlus.addEventListener("click", appData.addScreenBlock);
   },
+
   addTitle: function () {
     document.title = title.textContent;
   },
+
   start: function () {
     appData.addScreens();
     appData.addServices();
-
     appData.addPrices();
+    appData.showResult();
 
     // appData.getServicePercentPrices();
 
     // appData.logger();
-
     console.log(appData);
   },
+
   showResult: function () {
-    alert("showResult");
+    total.value = appData.screenPrice;
+    totalCountOther.value =
+      appData.servicePricesPercent + appData.servicePricesNumber;
+    fullTotalCount.value = appData.fullPrice;
   },
 
   addScreens: function () {
@@ -72,6 +78,7 @@ const appData = {
     });
     console.log(appData.screens);
   },
+
   addServices: function () {
     otherItemPercent.forEach(function (item) {
       const check = item.querySelector("input[type=checkbox]");
@@ -93,10 +100,12 @@ const appData = {
       }
     });
   },
+
   addScreenBlock: function () {
     const cloneScreen = screens[0].cloneNode(true);
     screens[screens.length - 1].after(cloneScreen);
   },
+
   addPrices: function () {
     for (let screen of appData.screens) {
       appData.screenPrice += +screen.price;
@@ -133,6 +142,7 @@ const appData = {
       return "Что-то пошло не так";
     }
   },
+
   logger: function () {
     console.log(appData.fullPrice);
     console.log(appData.servicePercentPrice);
@@ -141,17 +151,3 @@ const appData = {
 };
 
 appData.init();
-
-// console.log(title[0]);
-// console.log(btn[0]);
-// console.log(btn[1]);
-// console.log(btnPlus);
-// console.log(percent);
-// console.log(number);
-// console.log(input);
-// console.log(span);
-// console.log(totalInputs);
-// console.log(screens);
-// appData.screenPrice = appData.screens
-//       .map((item) => item.price)
-//       .reduce((prev, curr) => prev + +curr, 0);
