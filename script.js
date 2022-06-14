@@ -44,6 +44,8 @@ const render = function () {
   });
 };
 
+render();
+
 todoControl.addEventListener("submit", function (event) {
   event.preventDefault();
 
