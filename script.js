@@ -3,22 +3,16 @@ const headerInput = document.querySelector(".header-input");
 const todoList = document.querySelector(".todo-list");
 const todoCompleted = document.querySelector(".todo-completed");
 
-const toDoData = [
-  // {
-  //   text: "Сварить кофе",
-  //   completed: false,
-  // },
-  // {
-  //   text: "Помыть посуду",
-  //   completed: true,
-  // },
-];
+const toDoData = localStorage.getItem("toDo")
+  ? JSON.parse(localStorage.getItem("toDo"))
+  : [];
 
 const render = function () {
   todoList.innerHTML = "";
   todoCompleted.innerHTML = "";
+  localStorage.setItem("toDo", JSON.stringify(toDoData));
 
-  toDoData.forEach(function (item) {
+  toDoData.forEach(function (item, index) {
     const li = document.createElement("li");
 
     li.classList.add("todo-item");
@@ -38,9 +32,13 @@ const render = function () {
       todoList.append(li);
     }
 
-    // console.log(li.querySelector(".todo-complete"));
     li.querySelector(".todo-complete").addEventListener("click", function () {
       item.completed = !item.completed;
+      render();
+    });
+
+    li.querySelector(".todo-remove").addEventListener("click", function () {
+      toDoData.splice(index, 1);
       render();
     });
   });
@@ -49,13 +47,18 @@ const render = function () {
 todoControl.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const newToDo = {
-    text: headerInput.value,
-    completed: false,
-  };
+  if (headerInput.value.trim() == "") {
+    alert("Введите дело");
+    headerInput.value = "";
+  } else {
+    const newToDo = {
+      text: headerInput.value,
+      completed: false,
+    };
 
-  toDoData.push(newToDo);
-  headerInput.value = "";
+    toDoData.push(newToDo);
+    headerInput.value = "";
+  }
 
   render();
 });
